@@ -143,6 +143,7 @@
 
 
 				<redis.user-center.configstr><![CDATA[file-center1:192.168.1.121:6379,user-center2:192.168.1.121:6379]]></redis.user-center.configstr>
+				<redis.user-center.password><![CDATA[123456]]></redis.user-center.password>
 				
 				
 				<accessToken.time>86400</accessToken.time>
@@ -410,5 +411,29 @@
 			<artifactId>file-center-api</artifactId>
 			<version>${file.center.api.version}</version>
 		</dependency>
+				<!-- 七牛 -->
+		<dependency>
+		  <groupId>com.qiniu</groupId>
+		  <artifactId>qiniu-java-sdk</artifactId>
+		  <version>[7.2.6]</version>
+		</dependency>
+		<dependency>
+	      <groupId>com.squareup.okhttp3</groupId>
+	      <artifactId>okhttp</artifactId>
+	      <version>3.3.1</version>
+	      <scope>compile</scope>
+	    </dependency>
+	    <dependency>
+	      <groupId>com.google.code.gson</groupId>
+	      <artifactId>gson</artifactId>
+	      <version>2.6.2</version>
+	      <scope>compile</scope>
+	    </dependency>
+	    <dependency>
+	      <groupId>com.qiniu</groupId>
+	      <artifactId>happy-dns-java</artifactId>
+	      <version>0.1.4</version>
+	      <scope>compile</scope>
+	    </dependency>
 	</dependencies>
 </project>
