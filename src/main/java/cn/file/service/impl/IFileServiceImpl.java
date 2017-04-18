@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.file.cached.impl.IFileCachedImpl;
 import cn.file.common.QiniuUpload;
 import cn.file.common.QiniuUtil;
+import cn.file.dao.IFileDao;
 import cn.file.service.IFileService;
 
 @Service("fileService")
