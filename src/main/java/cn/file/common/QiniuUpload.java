@@ -37,8 +37,9 @@ public class QiniuUpload {
      * @param key 上传到七牛上的文件的名称  （同一个空间下，名称【key】是唯一的）
      * @param bucketName 空间名称  （这里是为了获取上传凭证）
      * @param days 过期天数，该文件days天后删除
+	 * @throws QiniuException 
      */
-    public void upload(String filePath, String key,Integer days) {
+    public void upload(String filePath, String key,Integer days) throws QiniuException {
         try {
         	logger.info("七牛图片上传...图片名称:"+key);
             //调用put方法上传
@@ -58,13 +59,8 @@ public class QiniuUpload {
         } catch (QiniuException e) {
             Response r = e.response;
             // 请求失败时打印的异常的信息
-            System.out.println(r.toString());
-            try {
-                // 响应的文本信息
-                System.out.println(r.bodyString());
-            } catch (QiniuException qe) {
-                // ignore
-            }
+            logger.error("七牛图片上传错误,错误信息:"+r.toString());
+            throw e;
         }
     }
     

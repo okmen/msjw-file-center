@@ -48,7 +48,7 @@ public class IFileServiceImpl implements IFileService {
 	 */
 	@Override
 	public String uploadFile(File file,Integer days) throws Exception {
-		logger.info("【七牛云】上传文件:"+file);
+		logger.info("【七牛云】上传文件:"+file+"\t存活天数:"+days);
 		//生成图片名称
 		String fileName = QiniuUpload.getBigFileName();
 		//上传图片
