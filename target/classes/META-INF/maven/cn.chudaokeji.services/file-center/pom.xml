@@ -159,6 +159,12 @@
 				<log4j.socket.host><![CDATA[192.168.1.120]]></log4j.socket.host>
 				<log4j.socket.port><![CDATA[10005]]></log4j.socket.port>
 				<isMWuserResultsTaskNeed>0</isMWuserResultsTaskNeed>
+				
+				<!-- 七牛云配置参数 -->
+				<qiniu.access_key>OayadC4VrxKhmgOGECo6qkCnkxsbTdMum1GGxwc9</qiniu.access_key>  <!-- 秘钥AK -->
+				<qiniu.secret_key>lLAz3sD2hj_zk67zXBE8h8f9etHZ4C3Hr1WERsBW</qiniu.secret_key>  <!-- 秘钥SK -->
+				<qiniu.bucketName>cdkj-jj</qiniu.bucketName> 	<!-- 存储空间列表 -->
+				<qiniu.qiniuImgDomain>http://oojgfm8c9.bkt.clouddn.com/</qiniu.qiniuImgDomain> <!-- 图片域名 -->
 			</properties>
 		</profile>
 
@@ -204,6 +210,12 @@
 				<log4j.socket.host><![CDATA[test-logserver.choumei.me]]></log4j.socket.host>
 				<log4j.socket.port><![CDATA[10003]]></log4j.socket.port>
 				<isMWuserResultsTaskNeed>0</isMWuserResultsTaskNeed>
+				
+				<!-- 七牛云配置参数 -->
+				<qiniu.access_key>OayadC4VrxKhmgOGECo6qkCnkxsbTdMum1GGxwc9</qiniu.access_key>  <!-- 秘钥AK -->
+				<qiniu.secret_key>lLAz3sD2hj_zk67zXBE8h8f9etHZ4C3Hr1WERsBW</qiniu.secret_key>  <!-- 秘钥SK -->
+				<qiniu.bucketName>cdkj-jj</qiniu.bucketName> 	<!-- 存储空间列表 -->
+				<qiniu.qiniuImgDomain>http://oojgfm8c9.bkt.clouddn.com/</qiniu.qiniuImgDomain> <!-- 图片域名 -->
 			</properties>
 		</profile>
 		
@@ -250,6 +262,12 @@
 				<log4j.socket.host><![CDATA[logserver.choumei.cn]]></log4j.socket.host>
 				<log4j.socket.port><![CDATA[10003]]></log4j.socket.port>
 				<isMWuserResultsTaskNeed>1</isMWuserResultsTaskNeed>
+				
+				<!-- 七牛云配置参数 -->
+				<qiniu.access_key>OayadC4VrxKhmgOGECo6qkCnkxsbTdMum1GGxwc9</qiniu.access_key>  <!-- 秘钥AK -->
+				<qiniu.secret_key>lLAz3sD2hj_zk67zXBE8h8f9etHZ4C3Hr1WERsBW</qiniu.secret_key>  <!-- 秘钥SK -->
+				<qiniu.bucketName>cdkj-jj</qiniu.bucketName> 	<!-- 存储空间列表 -->
+				<qiniu.qiniuImgDomain>http://oojgfm8c9.bkt.clouddn.com/</qiniu.qiniuImgDomain> <!-- 图片域名 -->
 			</properties>
 		</profile>
 	</profiles>

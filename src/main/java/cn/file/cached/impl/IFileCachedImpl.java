@@ -22,7 +22,18 @@ import cn.sdk.serialization.ISerializeManager;
 public class IFileCachedImpl implements IFileCached{
 	protected Logger log = Logger.getLogger(this.getClass());
 	
-    
+//	@Value("${accessKey}")
+//    private String accessKey;
+//	
+//	@Value("${secretKey}")
+//    private String secretKey;
+//	
+//	@Value("${bucketName}")
+//    private String bucketName;
+//	
+//	@Value("${qiniuImgDomain}")
+//    private String qiniuImgDomain;
+	
     @Value("${refreshTokenTime}")
     private int refreshTokenTime;
     
@@ -135,5 +146,4 @@ public class IFileCachedImpl implements IFileCached{
             return null;
         }
     }
-
 }

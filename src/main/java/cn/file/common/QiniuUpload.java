@@ -2,7 +2,6 @@ package cn.file.common;
 
 import java.util.Date;
 
-import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +35,7 @@ public class QiniuUpload {
      * @param key 上传到七牛上的文件的名称  （同一个空间下，名称【key】是唯一的）
      * @param bucketName 空间名称  （这里是为了获取上传凭证）
      */
-    public  void upload(String filePath, String key) {
+    public void upload(String filePath, String key) {
         try {
         	logger.info("七牛图片上传...图片名称:"+key);
             //调用put方法上传
@@ -62,14 +61,16 @@ public class QiniuUpload {
     }
     
     //获取凭证
-    public String getUpToken() {
-       Auth auth = Auth.create(QiniuUtil.ACCESS_KEY, QiniuUtil.SECRET_KEY);
-       return auth.uploadToken(QiniuUtil.bucketName);
+    public static String getUpToken() {
+       Auth auth = Auth.create(PropertyUtil.getProperty("accessKey"), PropertyUtil.getProperty("secretKey"));
+       return auth.uploadToken(PropertyUtil.getProperty("bucketName"));
     }
     
-    public static void main(String[] args) {
-		System.out.println(new QiniuUpload().getUpToken());
-	}
+    //获取域名
+    public static String getQiniuImgDomain() {
+        return PropertyUtil.getProperty("qiniuImgDomain");
+     }
+    
     
 	/**
 	 * @Title: getBigFileName 
@@ -79,7 +80,7 @@ public class QiniuUpload {
 	 * @return String 返回类型 
 	 * @throws
 	 */
-	public  static String getBigFileName(){
+	public static String getBigFileName(){
 		Date date = new Date();
 		String dirName = DateUtil.getNow_YMD();    //日期(new Date())--当前年月日(20130202)--用户ID(12312)--格式(.jpg)
 		String bigFileName = createFileName( date, dirName, "jpg", "" );
