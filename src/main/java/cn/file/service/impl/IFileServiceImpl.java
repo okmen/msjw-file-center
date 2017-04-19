@@ -30,10 +30,10 @@ public class IFileServiceImpl implements IFileService {
 	 * @throws
 	 */
 	@Override
-	public String uploadFile(String localFile) throws Exception {
+	public String uploadFile(String localFile,Integer days) throws Exception {
 		logger.info("【七牛云】上传文件路径:"+localFile);
 		File file = new File(localFile);
-        return uploadFile(file);
+        return uploadFile(file,days);
 	}
 
 	
@@ -47,12 +47,12 @@ public class IFileServiceImpl implements IFileService {
 	 * @throws
 	 */
 	@Override
-	public String uploadFile(File file) throws Exception {
+	public String uploadFile(File file,Integer days) throws Exception {
 		logger.info("【七牛云】上传文件:"+file);
 		//生成图片名称
 		String fileName = QiniuUpload.getBigFileName();
 		//上传图片
-		new QiniuUpload().upload(file.toString(), fileName);
+		new QiniuUpload().upload(file.toString(), fileName,days);
 		//返回图片路径
 		return getQiniuImgDomain()+fileName;
 	}
@@ -74,8 +74,8 @@ public class IFileServiceImpl implements IFileService {
 	
 	
     public static void main(String[] args) {
-	   
-	    System.out.println(new IFileServiceImpl().getQiniuImgDomain());
+    	
+//	    System.out.println(new IFileServiceImpl().getQiniuImgDomain());
         // 上传文件的路径，因为在Mac下，所以路径和windows下不同
 //	    String filePath = "/Users/Jeff.yang/Downloads/图片/百香翡翠茶.jpg";
 	    // 要上传的空间

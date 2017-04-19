@@ -32,7 +32,7 @@ public class TestFileService {
 	public void uploadFile() {
 //		fileService
 		try {
-			fileService.uploadFile("/Users/Jeff.yang/Downloads/图片/百香翡翠茶.jpg");
+			fileService.uploadFile("/Users/Jeff.yang/Downloads/图片/百香翡翠茶.jpg",0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

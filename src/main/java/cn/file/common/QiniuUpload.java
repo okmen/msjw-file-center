@@ -5,10 +5,12 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.druid.support.logging.Log;
 import com.google.gson.Gson;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
@@ -34,8 +36,9 @@ public class QiniuUpload {
      * @param filePath 文件路径  （也可以是字节数组、或者File对象）
      * @param key 上传到七牛上的文件的名称  （同一个空间下，名称【key】是唯一的）
      * @param bucketName 空间名称  （这里是为了获取上传凭证）
+     * @param days 过期天数，该文件days天后删除
      */
-    public void upload(String filePath, String key) {
+    public void upload(String filePath, String key,Integer days) {
         try {
         	logger.info("七牛图片上传...图片名称:"+key);
             //调用put方法上传
@@ -45,6 +48,11 @@ public class QiniuUpload {
             DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
             System.out.println(putRet.key);
             System.out.println(putRet.hash);
+            
+            //如果days大于0  则设置文件存活时间
+            if (null != days && 0 < days) {
+            	deleteAfterDays(days, key);
+			}
             
             logger.info("七牛图片上传结果："+res.bodyString());
         } catch (QiniuException e) {
@@ -70,6 +78,19 @@ public class QiniuUpload {
     public static String getQiniuImgDomain() {
         return PropertyUtil.getProperty("qiniuImgDomain");
      }
+    
+    //设置文件存活时间
+    public void deleteAfterDays(int days,String key){
+    	logger.info("设置图片"+key+"存活时间:"+days+"天");
+    	Auth auth = Auth.create(PropertyUtil.getProperty("accessKey"), PropertyUtil.getProperty("secretKey"));
+        BucketManager bucketManager = new BucketManager(auth, cfg);
+        try {
+			bucketManager.deleteAfterDays(PropertyUtil.getProperty("bucketName"), key, days);
+		} catch (QiniuException e) {
+			logger.info("设置文件存活时间失败,文件key:"+key);
+			e.printStackTrace();
+		}
+    }
     
     
 	/**
