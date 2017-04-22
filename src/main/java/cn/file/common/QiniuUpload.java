@@ -57,9 +57,8 @@ public class QiniuUpload {
             
             logger.info("七牛图片上传结果："+res.bodyString());
         } catch (QiniuException e) {
-            Response r = e.response;
             // 请求失败时打印的异常的信息
-            logger.error("七牛图片上传错误,错误信息:"+r.toString());
+            logger.error("七牛图片上传错误 File="+filePath,e);
             throw e;
         }
     }
