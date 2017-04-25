@@ -61,14 +61,20 @@ public class IFileServiceImpl implements IFileService {
 	 * 获取图片域名
 	 */
 	public String getQiniuImgDomain() {
-		return QiniuUpload.getQiniuImgDomain();
+		logger.info("七牛云获取图片域名...");
+		String str = QiniuUpload.getQiniuImgDomain();
+		logger.info("七牛云图片域名="+str);
+		return str;
 	}
 
 	/**
 	 * 获取上传凭证
 	 */
 	public String getUpToken() {
-		return QiniuUpload.getUpToken();
+		logger.info("七牛云获取上传凭证...");
+		String str = QiniuUpload.getUpToken();
+		logger.info("七牛云获取上传凭证="+str);
+		return str;
 	}
 	
 	
