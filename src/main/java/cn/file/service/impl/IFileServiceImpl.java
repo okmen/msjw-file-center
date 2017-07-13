@@ -1,5 +1,7 @@
 package cn.file.service.impl;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,7 +18,9 @@ import org.springframework.stereotype.Service;
 
 import cn.file.common.QiniuUpload;
 import cn.file.service.IFileService;
+import cn.sdk.encryption.img.ImageMarkUtil;
 import cn.sdk.encryption.img.ImgGzip;
+import cn.sdk.util.DateUtil2;
 import cn.sdk.util.RandomUtil;
 
 /**
@@ -79,7 +83,7 @@ public class IFileServiceImpl implements IFileService {
 	}
 
 	@Override
-	public  List<String> writeImgReadilyShoot(String reportSerialNumber, List<String> base64Imgs)throws Exception {
+	public  List<String> writeImgReadilyShoot(String reportSerialNumber, List<String> base64Imgs,String illegalTime)throws Exception {
 		String baseUrl = "http://szjj.u-road.com/fileserver/img/";
 		List<String> imgPaths = new ArrayList<String>();
 		//序列号为文件夹名称
@@ -100,6 +104,7 @@ public class IFileServiceImpl implements IFileService {
 				boolean flag = generateImage(baseStr, path);
 				if(flag){
 					ImgGzip.reduceImg(path, path, 806, 454,null);
+					ImageMarkUtil.pressText(path, illegalTime, "宋体", Font.BOLD, 30, Color.RED, -1, -1, 1.0f);
 					imgPaths.add(baseUrl + imgPath);
 				}
 			}
