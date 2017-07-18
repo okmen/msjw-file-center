@@ -107,9 +107,9 @@ public class IFileServiceImpl implements IFileService {
 					ImgGzip.reduceImg(path, path, 806, 454,null);
 					//logger.info("加水印图片为：" + path);
 					logger.info("加水印数据为：" + stVo.getImgDateTime());
-					if(StringUtils.isNotBlank(stVo.getImgDateTime())){
+					/*if(StringUtils.isNotBlank(stVo.getImgDateTime())){
 						ImageMarkUtil.pressText(path, stVo.getImgDateTime(), "宋体", Font.BOLD, 30, Color.RED, -1, -1, 1.0f);
-					}
+					}*/
 					imgPaths.add(baseUrl + imgPath);
 				}
 			}
