@@ -85,7 +85,7 @@ public class IFileServiceImpl implements IFileService {
 
 	@Override
 	public  List<String> writeImgReadilyShoot(String reportSerialNumber, List<StVo> base64Imgs)throws Exception {
-		String baseUrl = "http://szjj.u-road.com/fileserver/img/";
+		String baseUrl = "http://gzh.stc.gov.cn/fileserver/img/";
 		List<String> imgPaths = new ArrayList<String>();
 		//序列号为文件夹名称
 		//日期+数字
