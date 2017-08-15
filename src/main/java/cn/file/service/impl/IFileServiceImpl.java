@@ -1,7 +1,5 @@
 package cn.file.service.impl;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,7 +17,6 @@ import org.springframework.stereotype.Service;
 import cn.file.common.QiniuUpload;
 import cn.file.service.IFileService;
 import cn.sdk.bean.StVo;
-import cn.sdk.encryption.img.ImageMarkUtil;
 import cn.sdk.encryption.img.ImgGzip;
 import cn.sdk.util.RandomUtil;
 
@@ -187,23 +183,23 @@ public class IFileServiceImpl implements IFileService {
 		String baseUrl = "http://szjj.u-road.com/fileserver/img/";
 		String basePath = "opt/file/img";
 		String path = basePath;
-		File file2 = new File(basePath);
-		if(!file2.exists()){
-			file2.mkdirs();
-		}
-		if(null != file ){
-			String fileName = file.getName();  
-			String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);  
-			InputStream in = new FileInputStream(file);
-			String random = RandomUtil.randomString(5);
-			Long long1 = System.currentTimeMillis();
-			path += "/" + long1 + random + "." + suffix;
-			OutputStream out = new FileOutputStream(path);
-			out.write(in.read());
-			out.flush();
-			out.close();
-		}
-		return baseUrl+path;
+		FileInputStream stream =new FileInputStream(file);
+		String random = RandomUtil.randomString(5);
+		Long long1 = System.currentTimeMillis();
+		path += "/" + long1 + random + ".jpg";
+		FileOutputStream fs=new FileOutputStream(path);   
+        byte[] buffer =new byte[1024*1024];   
+        int bytesum = 0;   
+        int byteread = 0;    
+        while ((byteread=stream.read(buffer))!=-1)   
+        {   
+           bytesum+=byteread;   
+           fs.write(buffer,0,byteread);   
+           fs.flush();   
+        }    
+        fs.close();   
+        stream.close();
+        return baseUrl + path;
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -218,10 +214,6 @@ public class IFileServiceImpl implements IFileService {
 		base64Imgs.add(xxx);
 		new IFileServiceImpl().writeImgReadilyShoot("2222", base64Imgs);*/
 		
-		/*String path = "D:\\saas.jpg";
-		File file = new File(path);
-		String pathdd = new IFileServiceImpl().uploadAdminWeb(file);
-		System.out.println(pathdd);
 		/*
 		OutputStream out = new FileOutputStream(path);
 		out.write(file);
