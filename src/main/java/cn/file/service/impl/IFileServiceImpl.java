@@ -181,7 +181,7 @@ public class IFileServiceImpl implements IFileService {
 	@Override
 	public String uploadAdminWeb(File file)throws Exception {
 		String baseUrl = "http://szjj.u-road.com/fileserver/img/";
-		String basePath = "opt/file/img";
+		String basePath = "/opt/file/img";
 		String path = basePath;
 		FileInputStream stream =new FileInputStream(file);
 		String random = RandomUtil.randomString(5);
