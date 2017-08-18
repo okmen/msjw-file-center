@@ -179,15 +179,19 @@ public class IFileServiceImpl implements IFileService {
 	}
 
 	@Override
-	public String uploadAdminWeb(File file)throws Exception {
-		String baseUrl = "http://szjj.u-road.com/fileserver/img/";
-		String basePath = "/opt/file/img";
-		String path = basePath;
+	public String uploadAdminWeb(File file,String pf)throws Exception {
+		String baseUrl = "http://192.168.1.120:9100/img/admin/";
+		String basePath = "/opt/file/img/admin/";
+		File fileNew = new File(basePath);
+		if(!fileNew.exists()){
+			fileNew.mkdirs();
+		}
 		FileInputStream stream =new FileInputStream(file);
 		String random = RandomUtil.randomString(5);
 		Long long1 = System.currentTimeMillis();
-		path += "/" + long1 + random + ".jpg";
-		FileOutputStream fs=new FileOutputStream(path);   
+		String fileName = long1 + random + "." + pf;
+		String uploadPath = basePath + fileName;
+		FileOutputStream fs=new FileOutputStream(uploadPath);   
         byte[] buffer =new byte[1024*1024];   
         int bytesum = 0;   
         int byteread = 0;    
@@ -199,7 +203,7 @@ public class IFileServiceImpl implements IFileService {
         }    
         fs.close();   
         stream.close();
-        return baseUrl + path;
+        return baseUrl + fileName;
 	}
 	
 	public static void main(String[] args) throws Exception {
