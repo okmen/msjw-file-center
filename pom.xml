@@ -165,6 +165,8 @@
 				<qiniu.secret_key>lLAz3sD2hj_zk67zXBE8h8f9etHZ4C3Hr1WERsBW</qiniu.secret_key>  <!-- 秘钥SK -->
 				<qiniu.bucketName>cdkj-jj</qiniu.bucketName> 	<!-- 存储空间列表 -->
 				<qiniu.qiniuImgDomain>http://oojgfm8c9.bkt.clouddn.com/</qiniu.qiniuImgDomain> <!-- 图片域名 -->
+				
+				<szjjAdmin.uploadAdminUrl>http://192.168.1.120:9100/img/admin/</szjjAdmin.uploadAdminUrl> <!-- 深圳交警 便民后台 图片上传路径 -->
 			</properties>
 		</profile>
 
@@ -273,6 +275,8 @@
 				<qiniu.secret_key>lLAz3sD2hj_zk67zXBE8h8f9etHZ4C3Hr1WERsBW</qiniu.secret_key>  <!-- 秘钥SK -->
 				<qiniu.bucketName>cdkj-jj</qiniu.bucketName> 	<!-- 存储空间列表 -->
 				<qiniu.qiniuImgDomain>http://oojgfm8c9.bkt.clouddn.com/</qiniu.qiniuImgDomain> <!-- 图片域名 -->
+				
+				<szjjAdmin.uploadAdminUrl>http://szjj.u-road.com/fileserver/img/admin/</szjjAdmin.uploadAdminUrl> <!-- 深圳交警 便民后台 图片上传路径 -->
 			</properties>
 		</profile>
 	</profiles>

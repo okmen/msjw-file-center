@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import cn.file.common.PropertyUtil;
 import cn.file.common.QiniuUpload;
 import cn.file.service.IFileService;
 import cn.sdk.bean.StVo;
@@ -180,7 +181,9 @@ public class IFileServiceImpl implements IFileService {
 
 	@Override
 	public String uploadAdminWeb(File file,String pf)throws Exception {
-		String baseUrl = "http://192.168.1.120:9100/img/admin/";
+		logger.info("获取深圳交警便民后台上传图片URL...");
+		String uploadAdminUrl = PropertyUtil.getProperty("uploadAdminUrl"); 
+		logger.info("深圳交警便民后台上传图片URL=" + uploadAdminUrl);
 		String basePath = "/opt/file/img/admin/";
 		File fileNew = new File(basePath);
 		if(!fileNew.exists()){
@@ -203,7 +206,7 @@ public class IFileServiceImpl implements IFileService {
         }    
         fs.close();   
         stream.close();
-        return baseUrl + fileName;
+        return uploadAdminUrl + fileName;
 	}
 	
 	public static void main(String[] args) throws Exception {
