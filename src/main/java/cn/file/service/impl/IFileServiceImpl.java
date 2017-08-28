@@ -209,6 +209,46 @@ public class IFileServiceImpl implements IFileService {
         return uploadAdminUrl + fileName;
 	}
 	
+	@Override
+	public String uploadFile(InputStream inputStream, String pf)
+			throws Exception {
+		FileOutputStream fs = null;
+		try {
+			String fileName = System.currentTimeMillis() + RandomUtil.randomString(5) + "." + pf;
+			String path = "/opt/file/img/face/" + fileName;
+			File file = new File(path);
+			
+			// 判断文件路径是否存在
+            if (!file.getParentFile().exists()) {
+                // 如果文件不存在就创建文件
+                file.getParentFile().mkdirs();
+            }
+            
+			if(!file.exists()){
+				file.mkdirs();
+			}
+			
+			fs = new FileOutputStream(path);   
+	        byte[] buffer =new byte[1024*1024];   
+	        int size = 0;    
+	        while ((size=inputStream.read(buffer))!=-1)   
+	        {   
+	           fs.write(buffer,0,size);   
+	           fs.flush();   
+	        }    
+	        return fileName;
+		} catch (Exception e) {
+			logger.error("保存文件异常",e);
+		}finally{
+			if(null != inputStream)
+				inputStream.close();
+			
+			if(null != fs)
+				fs.close();
+		}
+		return "";
+	}
+	
 	public static void main(String[] args) throws Exception {
 		//List<StVo> base64Imgs = new ArrayList<StVo>();
 		
@@ -246,5 +286,4 @@ public class IFileServiceImpl implements IFileService {
 		// e.printStackTrace();
 		// }
 	}
-
 }
