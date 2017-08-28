@@ -214,7 +214,7 @@ public class IFileServiceImpl implements IFileService {
 			throws Exception {
 		FileOutputStream fs = null;
 		try {
-			String fileName = System.currentTimeMillis() + RandomUtil.randomString(5) + "." + pf;
+			String fileName = System.currentTimeMillis() + RandomUtil.randomString(5) + pf;
 			String path = "/opt/file/img/face/" + fileName;
 			File file = new File(path);
 			
