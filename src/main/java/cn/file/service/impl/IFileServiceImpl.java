@@ -220,12 +220,12 @@ public class IFileServiceImpl implements IFileService {
 			
 			// 判断文件路径是否存在
             if (!file.getParentFile().exists()) {
-                // 如果文件不存在就创建文件
+                // 如果目录不存在就先创建目录
                 file.getParentFile().mkdirs();
             }
             
 			if(!file.exists()){
-				file.mkdirs();
+				file.createNewFile();
 			}
 			
 			fs = new FileOutputStream(path);   
