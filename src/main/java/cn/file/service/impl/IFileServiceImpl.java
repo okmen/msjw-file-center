@@ -181,32 +181,42 @@ public class IFileServiceImpl implements IFileService {
 
 	@Override
 	public String uploadAdminWeb(File file,String pf)throws Exception {
-		logger.info("获取深圳交警便民后台上传图片URL...");
-		String uploadAdminUrl = PropertyUtil.getProperty("uploadAdminUrl"); 
-		logger.info("深圳交警便民后台上传图片URL=" + uploadAdminUrl);
-		String basePath = "/opt/file/img/admin/";
-		File fileNew = new File(basePath);
-		if(!fileNew.exists()){
-			fileNew.mkdirs();
+		FileInputStream fileInputStream = null;
+		FileOutputStream fs = null;
+		try {
+			logger.info("获取深圳交警便民后台上传图片URL...");
+			String uploadAdminUrl = PropertyUtil.getProperty("uploadAdminUrl"); 
+			logger.info("深圳交警便民后台上传图片URL=" + uploadAdminUrl);
+			String basePath = "/opt/file/img/admin/";
+			File fileNew = new File(basePath);
+			if(!fileNew.exists()){
+				fileNew.mkdirs();
+			}
+			fileInputStream =new FileInputStream(file);
+			String random = RandomUtil.randomString(5);
+			Long long1 = System.currentTimeMillis();
+			String fileName = long1 + random + "." + pf;
+			String uploadPath = basePath + fileName;
+			fs = new FileOutputStream(uploadPath);   
+	        byte[] buffer =new byte[1024*1024];   
+	        int size = 0;    
+	        while ((size=fileInputStream.read(buffer))!=-1)   
+	        {   
+	           fs.write(buffer,0,size);   
+	           fs.flush();   
+	        }    
+	        return uploadAdminUrl+ "/img/admin/" + fileName;
+		} catch (Exception e) {
+			logger.error("uploadAdminWeb异常",e);
+			throw e;
+		}finally{
+			if(null != fileInputStream)
+				fileInputStream.close();
+			
+			if(null != fs)
+				fs.close();
 		}
-		FileInputStream stream =new FileInputStream(file);
-		String random = RandomUtil.randomString(5);
-		Long long1 = System.currentTimeMillis();
-		String fileName = long1 + random + "." + pf;
-		String uploadPath = basePath + fileName;
-		FileOutputStream fs=new FileOutputStream(uploadPath);   
-        byte[] buffer =new byte[1024*1024];   
-        int bytesum = 0;   
-        int byteread = 0;    
-        while ((byteread=stream.read(buffer))!=-1)   
-        {   
-           bytesum+=byteread;   
-           fs.write(buffer,0,byteread);   
-           fs.flush();   
-        }    
-        fs.close();   
-        stream.close();
-        return uploadAdminUrl + fileName;
+		
 	}
 	
 	@Override
