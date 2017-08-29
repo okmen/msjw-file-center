@@ -239,6 +239,7 @@ public class IFileServiceImpl implements IFileService {
 	        return fileName;
 		} catch (Exception e) {
 			logger.error("保存文件异常",e);
+			throw e;
 		}finally{
 			if(null != inputStream)
 				inputStream.close();
@@ -246,7 +247,6 @@ public class IFileServiceImpl implements IFileService {
 			if(null != fs)
 				fs.close();
 		}
-		return "";
 	}
 	
 	public static void main(String[] args) throws Exception {
