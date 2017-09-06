@@ -239,7 +239,7 @@ public class IFileServiceImpl implements IFileService {
 			}
 			
 			fs = new FileOutputStream(path);   
-	        byte[] buffer =new byte[1024*1024];   
+	        byte[] buffer =new byte[1024];   
 	        int size = 0;    
 	        while ((size=inputStream.read(buffer))!=-1)   
 	        {   
