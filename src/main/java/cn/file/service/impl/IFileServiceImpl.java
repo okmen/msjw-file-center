@@ -1,5 +1,6 @@
 package cn.file.service.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -237,10 +238,53 @@ public class IFileServiceImpl implements IFileService {
 			if(!file.exists()){
 				file.createNewFile();
 			}
-			
+			System.out.println("开始获取文件上传");
 			fs = new FileOutputStream(path);   
 	        byte[] buffer =new byte[1024];   
-	        int size = 0;    
+	        int size;    
+	        while ((size=inputStream.read(buffer))!=-1)   
+	        {   
+	           fs.write(buffer,0,size);   
+	           fs.flush();   
+	        }    
+	        return fileName;
+		} catch (Exception e) {
+			logger.error("保存文件异常",e);
+			throw e;
+		}finally{
+			if(null != inputStream)
+				inputStream.close();
+			
+			if(null != fs)
+				fs.close();
+		}
+	}
+	
+	@Override
+	public String uploadFile(String base64Str, String pf)
+			throws Exception {
+		FileOutputStream fs = null;
+		InputStream inputStream=null;
+		try {
+			byte[] frontpic=Base64.decodeBase64(base64Str);
+			inputStream=new ByteArrayInputStream(frontpic); 
+			String fileName = System.currentTimeMillis() + RandomUtil.randomString(5) + pf;
+			String path = "/opt/file/img/face/" + fileName;
+			File file = new File(path);
+			
+			// 判断文件路径是否存在
+            if (!file.getParentFile().exists()) {
+                // 如果目录不存在就先创建目录
+                file.getParentFile().mkdirs();
+            }
+            
+			if(!file.exists()){
+				file.createNewFile();
+			}
+			System.out.println("开始获取文件上传");
+			fs = new FileOutputStream(path);   
+	        byte[] buffer =new byte[1024];   
+	        int size;    
 	        while ((size=inputStream.read(buffer))!=-1)   
 	        {   
 	           fs.write(buffer,0,size);   
