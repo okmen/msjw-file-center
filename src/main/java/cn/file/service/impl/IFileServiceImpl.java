@@ -270,6 +270,7 @@ public class IFileServiceImpl implements IFileService {
 			inputStream=new ByteArrayInputStream(frontpic); 
 			String fileName = System.currentTimeMillis() + RandomUtil.randomString(5) + pf;
 			String path = "/opt/file/img/face/" + fileName;
+			logger.info("保存文件路径:"+path);
 			File file = new File(path);
 			
 			// 判断文件路径是否存在
@@ -290,6 +291,7 @@ public class IFileServiceImpl implements IFileService {
 	           fs.write(buffer,0,size);   
 	           fs.flush();   
 	        }    
+	        logger.info("文件保存成功");
 	        return fileName;
 		} catch (Exception e) {
 			logger.error("保存文件异常",e);
