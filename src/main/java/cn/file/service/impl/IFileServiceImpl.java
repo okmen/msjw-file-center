@@ -261,7 +261,7 @@ public class IFileServiceImpl implements IFileService {
 	}
 	
 	@Override
-	public String uploadFile(String base64Str, String pf)
+	public String uploadFileImg(String base64Str, String pf)
 			throws Exception {
 		FileOutputStream fs = null;
 		InputStream inputStream=null;
