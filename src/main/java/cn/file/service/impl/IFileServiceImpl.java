@@ -120,6 +120,35 @@ public class IFileServiceImpl implements IFileService {
 		return imgPaths;
 	}
 	
+	
+	@Override
+	public  List<String> problemFeedback(String reportSerialNumber, List<StVo> base64Imgs)throws Exception {
+		String baseUrl = "http://gzh.stc.gov.cn/fileserver/img/";
+		List<String> imgPaths = new ArrayList<String>();
+		//序列号为文件夹名称
+		//日期+数字
+		String basePath = "/opt/file/img";
+		//String basePath = "D:\\opt";
+		File file = new File(basePath + "/" + reportSerialNumber);
+		file.setWritable(true, false);
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		if(null != base64Imgs && base64Imgs.size() > 0){
+			for(StVo stVo : base64Imgs){
+				String random = RandomUtil.randomString(5);
+				Long long1 = System.currentTimeMillis();
+				String path = basePath + "/" + reportSerialNumber + "/" + long1 + random + ".jpg";
+				String imgPath = reportSerialNumber + "/" + long1 + random + ".jpg";
+				boolean flag = generateImage(stVo.getBase64Img(), path);
+				if(flag){
+					imgPaths.add(baseUrl + imgPath);
+				}
+			}
+		}
+		return imgPaths;
+	}
+	
 	public void gziImgOld()throws Exception{
 		String imgsPath = "/opt/file/img";
 		File file = new File(imgsPath);
