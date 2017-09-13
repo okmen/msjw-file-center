@@ -349,7 +349,7 @@ public class IFileServiceImpl implements IFileService {
 	}
 
 	@Override
-	public int saveProblemFeedback(ProblemFeedbackVo problemFeedbackVo) throws Exception {
+	public int saveProblemFeedback(ProblemFeedbackVo problemFeedbackVo){
 		
 		return iFileDao.saveProblemFeedback(problemFeedbackVo);
 	}

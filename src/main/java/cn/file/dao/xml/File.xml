@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.file.dao.mapper.FileMapper">
+
+
+	<insert id="saveProblemFeedback" parameterType="cn.file.bean.vo.ProblemFeedbackVo" useGeneratedKeys="true" keyProperty="id">
+		insert into t_szjj_suggest (
+			wxcode, remark, status, jpgurl, intime
+		)
+		values  (
+			#{wxcode}, #{remark}, #{status}, #{jpgurl}, #{intime}
+	    )
+	</insert>
+	
+</mapper>
