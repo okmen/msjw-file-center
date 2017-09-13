@@ -13,10 +13,13 @@ import java.util.List;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.file.common.PropertyUtil;
+import cn.file.bean.vo.ProblemFeedbackVo;
 import cn.file.common.QiniuUpload;
+import cn.file.dao.IFileDao;
 import cn.file.service.IFileService;
 import cn.sdk.bean.StVo;
 import cn.sdk.encryption.img.ImgGzip;
@@ -32,6 +35,8 @@ import cn.sdk.util.RandomUtil;
 @Service("fileService")
 public class IFileServiceImpl implements IFileService {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	@Autowired
+	private IFileDao iFileDao;
 
 	/**
 	 * @Title: uploadFile @Description: TODO(通过文件路径上传文件) @param @param
@@ -341,5 +346,11 @@ public class IFileServiceImpl implements IFileService {
 		// // TODO Auto-generated catch block
 		// e.printStackTrace();
 		// }
+	}
+
+	@Override
+	public int saveProblemFeedback(ProblemFeedbackVo problemFeedbackVo) throws Exception {
+		
+		return iFileDao.saveProblemFeedback(problemFeedbackVo);
 	}
 }
