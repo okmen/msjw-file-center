@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.file.common.PropertyUtil;
 import cn.file.bean.vo.ProblemFeedbackVo;
+import cn.file.common.PropertyUtil;
 import cn.file.common.QiniuUpload;
 import cn.file.dao.IFileDao;
 import cn.file.service.IFileService;
