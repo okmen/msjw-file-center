@@ -348,7 +348,7 @@ public class IFileServiceImpl implements IFileService {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		List<StVo> base64Imgs = new ArrayList<StVo>();
+		/*List<StVo> base64Imgs = new ArrayList<StVo>();
 		
 		
 		StVo vo = new StVo();
@@ -358,7 +358,7 @@ public class IFileServiceImpl implements IFileService {
 		base64Imgs.add(vo);
 		base64Imgs.add(vo);
 		
-		new IFileServiceImpl().writeImgReadilyShoot("2222", base64Imgs);
+		new IFileServiceImpl().writeImgReadilyShoot("2222", base64Imgs);*/
 		
 		/*
 		OutputStream out = new FileOutputStream(path);
