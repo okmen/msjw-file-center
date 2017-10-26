@@ -228,7 +228,7 @@ public class IFileServiceImpl implements IFileService {
 		ByteArrayInputStream inputStream = null;
 		try {
 			inputStream = new ByteArrayInputStream(b);  
-			logger.info("获取深圳交警便民后台上传图片URL...inputStream="+b);
+			logger.info("获取深圳交警便民后台上传图片URL...byte="+b);
 			String uploadAdminUrl = PropertyUtil.getProperty("uploadAdminUrl"); 
 			logger.info("深圳交警便民后台上传图片URL=" + uploadAdminUrl);
 			String basePath = "/opt/file/img/admin/";
