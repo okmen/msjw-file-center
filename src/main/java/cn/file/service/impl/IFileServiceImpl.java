@@ -223,10 +223,10 @@ public class IFileServiceImpl implements IFileService {
 	}
 
 	@Override
-	public String uploadAdminWeb(FileInputStream fileInputStream,String pf)throws Exception {
+	public String uploadAdminWeb(InputStream inputStream,String pf)throws Exception {
 		FileOutputStream fs = null;
 		try {
-			logger.info("获取深圳交警便民后台上传图片URL...");
+			logger.info("获取深圳交警便民后台上传图片URL...inputStream="+inputStream);
 			String uploadAdminUrl = PropertyUtil.getProperty("uploadAdminUrl"); 
 			logger.info("深圳交警便民后台上传图片URL=" + uploadAdminUrl);
 			String basePath = "/opt/file/img/admin/";
@@ -241,7 +241,7 @@ public class IFileServiceImpl implements IFileService {
 			fs = new FileOutputStream(uploadPath);   
 	        byte[] buffer =new byte[1024*1024];   
 	        int size = 0;    
-	        while ((size=fileInputStream.read(buffer))!=-1)   
+	        while ((size=inputStream.read(buffer))!=-1)   
 	        {   
 	           fs.write(buffer,0,size);   
 	           fs.flush();   
@@ -251,8 +251,8 @@ public class IFileServiceImpl implements IFileService {
 			logger.error("uploadAdminWeb异常",e);
 			throw e;
 		}finally{
-			if(null != fileInputStream)
-				fileInputStream.close();
+			if(null != inputStream)
+				inputStream.close();
 			
 			if(null != fs)
 				fs.close();
