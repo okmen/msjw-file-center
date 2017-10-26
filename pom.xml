@@ -278,7 +278,7 @@
 				<qiniu.bucketName>cdkj-jj</qiniu.bucketName> 	<!-- 存储空间列表 -->
 				<qiniu.qiniuImgDomain>http://oojgfm8c9.bkt.clouddn.com/</qiniu.qiniuImgDomain> <!-- 图片域名 -->
 				
-				<szjjAdmin.uploadAdminUrl>http://szjj.u-road.com/fileserver/img/admin/</szjjAdmin.uploadAdminUrl> <!-- 深圳交警 便民后台 图片上传路径 -->
+				<szjjAdmin.uploadAdminUrl>http://szjj.u-road.com/fileserver/</szjjAdmin.uploadAdminUrl> <!-- 深圳交警 便民后台 图片上传路径 -->
 			</properties>
 		</profile>
 	</profiles>
