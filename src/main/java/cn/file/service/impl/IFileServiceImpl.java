@@ -223,8 +223,7 @@ public class IFileServiceImpl implements IFileService {
 	}
 
 	@Override
-	public String uploadAdminWeb(File file,String pf)throws Exception {
-		FileInputStream fileInputStream = null;
+	public String uploadAdminWeb(FileInputStream fileInputStream,String pf)throws Exception {
 		FileOutputStream fs = null;
 		try {
 			logger.info("获取深圳交警便民后台上传图片URL...");
@@ -235,7 +234,6 @@ public class IFileServiceImpl implements IFileService {
 			if(!fileNew.exists()){
 				fileNew.mkdirs();
 			}
-			fileInputStream =new FileInputStream(file);
 			String random = RandomUtil.randomString(5);
 			Long long1 = System.currentTimeMillis();
 			String fileName = long1 + random + "." + pf;
