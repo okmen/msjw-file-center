@@ -114,6 +114,7 @@ public class IFileServiceImpl implements IFileService {
 				String path = pString + "/" + long1 + random + ".jpg";
 				String imgPath = date + "/" + reportSerialNumber + "/" + long1 + random + ".jpg";
 				boolean flag = generateImage(stVo.getBase64Img(), path);
+				logger.info("写入图片结果："+flag);
 				if(flag){
 					ImgGzip.reduceImg(path, path, 806, 454,null);
 					//logger.info("加水印图片为：" + path);
@@ -121,6 +122,7 @@ public class IFileServiceImpl implements IFileService {
 					/*if(StringUtils.isNotBlank(stVo.getImgDateTime())){
 						ImageMarkUtil.pressText(path, stVo.getImgDateTime(), "宋体", Font.BOLD, 30, Color.RED, -1, -1, 1.0f);
 					}*/
+					logger.info("图片路径："+baseUrl + imgPath);
 					imgPaths.add(baseUrl + imgPath);
 				}
 			}
